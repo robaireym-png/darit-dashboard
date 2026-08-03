@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Darit Capital — Research Dashboard</title>
+<style>
+  :root{--bg:#0d1117;--card:#161b22;--line:#30363d;--tx:#e6edf3;--mut:#8b949e;--grn:#3fb950;--red:#f85149;--amb:#d29922;--acc:#58a6ff}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 -apple-system,Segoe UI,Roboto,sans-serif;-webkit-text-size-adjust:100%}
+  .wrap{max-width:900px;margin:0 auto;padding:20px 16px 60px}
+  h1{font-size:22px;margin:0} .sub{color:var(--mut);font-size:13px;margin:2px 0 0}
+  .banner{background:linear-gradient(90deg,#1f2937,#161b22);border:1px solid var(--line);border-left:4px solid var(--amb);border-radius:10px;padding:14px 16px;margin:18px 0}
+  .banner b{color:var(--amb)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:14px 0}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}
+  .card h3{margin:0 0 8px;font-size:14px;color:var(--acc);text-transform:uppercase;letter-spacing:.04em}
+  .big{font-size:26px;font-weight:700} .row{display:flex;justify-content:space-between;padding:3px 0;font-size:14px}
+  .row .k{color:var(--mut)} .grn{color:var(--grn)} .red{color:var(--red)} .amb{color:var(--amb)}
+  table{width:100%;border-collapse:collapse;margin:6px 0 0;font-size:14px}
+  th,td{text-align:right;padding:8px 6px;border-bottom:1px solid var(--line)} th{color:var(--mut);font-weight:600}
+  td:first-child,th:first-child{text-align:left}
+  .tag{display:inline-block;font-size:11px;padding:2px 7px;border-radius:20px;border:1px solid var(--line);color:var(--mut)}
+  .note{color:var(--mut);font-size:13px;margin-top:8px}
+  h2{font-size:16px;margin:26px 0 6px;border-bottom:1px solid var(--line);padding-bottom:6px}
+  footer{color:var(--mut);font-size:12px;margin-top:30px;border-top:1px solid var(--line);padding-top:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Darit Capital <span class="tag">paper only</span></h1>
+  <p class="sub">Momentum research on a 48-name universe · nightly "Dr. Strange" battery · last run 2026-08-01 02:05</p>
+
+  <div class="banner">
+    <b>Honest verdict:</b> The strategy "passes" out-of-sample (+8.3%/yr over equal-weight), <b>but the edge is 3 stocks (NVDA / AVGO / TSLA) and it only appears after 2018.</b> Drop those names and the edge goes to −0.1%. That's hindsight concentration in a universe we picked in 2026 — <b>not a proven money machine.</b> Next test: a survivorship-free, point-in-time universe.
+  </div>
+
+  <h2 id="fleet">Account Fleet — backtest (1993–2026, excess vs equal-weight)</h2>
+  <p class="note">Seven strategy "accounts" run on the full history. Absolute returns are survivorship-inflated — <b>excess over equal-weight</b> (below) is the honest metric; the live forward-paper fleet is the clean test. <b>MuThUr's pick: A3 SPEAR.</b></p>
+  <table>
+    <tr><th>Account</th><th>What it is</th><th>Excess/yr</th><th>Early era</th><th>Late era</th><th>Max DD</th><th>Verdict</th></tr>
+    <tr><td>A3&nbsp;<b>SPEAR</b></td><td>concentrated top-5 + trend gate</td><td class="grn">+7.6%</td><td class="grn">+7.7%</td><td class="grn">+7.5%</td><td>−36%</td><td class="grn">✓ return + defense</td></tr>
+    <tr><td>A1&nbsp;ANVIL</td><td>base momentum (live)</td><td class="grn">+2.8%</td><td>+0.5%</td><td>+4.8%</td><td>−54%</td><td class="amb">return, borderline</td></tr>
+    <tr><td>A4&nbsp;MAGPIE</td><td>naked top-5 (control)</td><td class="grn">+9.9%</td><td>+0.1%</td><td>+18.6%</td><td class="red">−69%</td><td class="red">✗ blow-up risk</td></tr>
+    <tr><td>A5&nbsp;BADGER</td><td>abs-momentum filter</td><td>+2.5%</td><td class="red">−0.2%</td><td>+4.8%</td><td>−53%</td><td class="red">✗</td></tr>
+    <tr><td>A2&nbsp;TURTLE</td><td>base + trend gate</td><td class="red">−0.7%</td><td class="grn">+3.4%</td><td class="red">−4.0%</td><td class="grn">−34%</td><td class="amb">defense only</td></tr>
+    <tr><td>A6&nbsp;GYRO</td><td>vol-targeted</td><td class="red">−5.5%</td><td class="red">−3.8%</td><td class="red">−6.9%</td><td class="grn">−31%</td><td class="red">✗</td></tr>
+    <tr><td>A0&nbsp;EW-bench</td><td>equal-weight benchmark</td><td>—</td><td>—</td><td>—</td><td>−50%</td><td>baseline</td></tr>
+  </table>
+  <div class="card" style="margin-top:12px">
+    <h3>Excess vs equal-weight — full period (bar = size, color = verdict)</h3>
+    <div style="display:flex;flex-direction:column;gap:7px;margin-top:10px">
+      <div style="display:flex;align-items:center;gap:8px"><span style="width:92px;color:var(--mut)">A3 SPEAR</span><div style="flex:1;background:#0d1117;border-radius:4px"><div style="width:68%;height:15px;background:var(--grn);border-radius:4px"></div></div><span class="grn" style="width:52px;text-align:right">+7.6%</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span style="width:92px;color:var(--mut)">A4 MAGPIE</span><div style="flex:1;background:#0d1117;border-radius:4px"><div style="width:89%;height:15px;background:var(--red);border-radius:4px"></div></div><span class="red" style="width:52px;text-align:right">+9.9%</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span style="width:92px;color:var(--mut)">A1 ANVIL</span><div style="flex:1;background:#0d1117;border-radius:4px"><div style="width:25%;height:15px;background:var(--amb);border-radius:4px"></div></div><span class="amb" style="width:52px;text-align:right">+2.8%</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span style="width:92px;color:var(--mut)">A5 BADGER</span><div style="flex:1;background:#0d1117;border-radius:4px"><div style="width:23%;height:15px;background:var(--red);border-radius:4px"></div></div><span style="width:52px;text-align:right">+2.5%</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span style="width:92px;color:var(--mut)">A2 TURTLE</span><div style="flex:1;background:#0d1117;border-radius:4px"><div style="width:8%;height:15px;background:var(--amb);border-radius:4px"></div></div><span class="red" style="width:52px;text-align:right">−0.7%</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span style="width:92px;color:var(--mut)">A6 GYRO</span><div style="flex:1;background:#0d1117;border-radius:4px"><div style="width:50%;height:15px;background:var(--red);border-radius:4px"></div></div><span class="red" style="width:52px;text-align:right">−5.5%</span></div>
+    </div>
+    <p class="note">A4 MAGPIE has the biggest bar but it's red — a −69% drawdown, all of it in the recent era. The only difference from the green winner (A3 SPEAR) is the trend gate; that gate is the edge.</p>
+  </div>
+
+  <h2>The three profiles (out-of-sample, 2010+, net of costs)</h2>
+  <table>
+    <tr><th>Profile</th><th>CAGR</th><th>Sharpe</th><th>Max DD</th><th>Edge vs EW</th><th>Win rate</th></tr>
+    <tr><td>Stable <span class="tag">baseline</span></td><td>29.5%</td><td>1.14</td><td class="red">−34.7%</td><td class="grn">+3.3%</td><td>67%</td></tr>
+    <tr><td>Riskier <span class="tag">concentrated</span></td><td class="grn">58.9%</td><td>1.56</td><td class="red">−41.5%</td><td class="grn">+32.7%</td><td>100%</td></tr>
+    <tr><td>Turtle <span class="tag">defensive</span></td><td>17.7%</td><td>1.01</td><td>−25.4%</td><td class="red">−8.5%</td><td>0%</td></tr>
+    <tr><td>Equal-weight <span class="tag">benchmark</span></td><td>26.2%</td><td>1.25</td><td>−32.1%</td><td>—</td><td>—</td></tr>
+  </table>
+  <p class="note">Riskier just bets harder on the same 3-name effect — treat the 58.9% with heavy skepticism. Turtle (trend-to-cash) cuts drawdown but lags the benchmark; needs tuning.</p>
+
+  <div class="grid">
+    <div class="card"><h3>Edge attribution</h3><div class="row"><span class="k">With all names</span><span class="grn">+3.3%</span></div><div class="row"><span class="k">Drop NVDA/AVGO/TSLA</span><span class="red">−0.1%</span></div><p class="note">The entire edge is 3 stocks.</p></div>
+    <div class="card"><h3>When the edge appears</h3><div class="row"><span class="k">2010–2017</span><span class="red">−0.5%</span></div><div class="row"><span class="k">2018–2026</span><span class="grn">+6.6%</span></div><p class="note">All of it is the post-2018 mega-cap era.</p></div>
+    <div class="card"><h3>Cost stress</h3><div class="row"><span class="k">Base (8 bps)</span><span class="grn">+3.3%</span></div><div class="row"><span class="k">At 20 bps</span><span class="grn">+2.8%</span></div><p class="note">Fragile to <i>names</i>, not fees.</p></div>
+    <div class="card"><h3>Trade frequency</h3><div class="row"><span class="k">Monthly</span><span>29.0%</span></div><div class="row"><span class="k">Weekly</span><span class="grn">31.4%</span></div><div class="row"><span class="k">Daily</span><span class="red">28.2%</span></div><p class="note">Weekly is the sweet spot; faster just adds cost.</p></div>
+  </div>
+
+  <h2>Gates &amp; method</h2>
+  <div class="grid">
+    <div class="card"><h3>Gate 1 — engine</h3><div class="big grn">PASS</div><p class="note">Reproduced SPY's −55% 2008 drawdown → the backtest math is honest.</p></div>
+    <div class="card"><h3>Gate 2 — OOS edge</h3><div class="big amb">PASS*</div><p class="note">Cleared every pre-registered bar, *but exposed as 3-name hindsight. Real test = survivorship-free universe.</p></div>
+    <div class="card"><h3>Blind test</h3><div class="big grn">✓</div><p class="note">Renaming every stock to S00–S49 gave byte-identical results — the algo picks by the rule, not the name.</p></div>
+  </div>
+  <p class="note">Method: walk-forward — momentum settings chosen on a 5-yr train window, applied to the next unseen 3-yr window, chained into one out-of-sample curve. Honest benchmark = equal-weight of the same names (survivorship cancels). Nightly Dr. Strange runs ~288 configs + attribution + stress at 2 a.m. and posts a Telegram summary.</p>
+
+  <footer>Darit Capital · paper-only research, not investment advice · engineer: Opus · reviews: Fable · compute: MuThUr · snapshot 2026-08-01</footer>
+</div>
+</body>
+</html>
