@@ -41,7 +41,7 @@
 <body>
 <div class="wrap">
   <h1>Darit Capital <span class="tag">paper only</span></h1>
-  <p class="sub">Systematic trading research &middot; nightly "Dr. Strange" battery <!--BAT-->(last run 2026-08-11 02:05)<!--/BAT--> &middot; SPEAR marked to market daily</p>
+  <p class="sub">Systematic trading research &middot; nightly "Dr. Strange" battery <!--BAT-->(last run 2026-08-13 02:05)<!--/BAT--> &middot; SPEAR marked to market daily</p>
   <nav style="display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0">
     <a href="#portfolio">Portfolio</a><a href="#live">Live book</a><a href="#explain">Why today</a><a href="#experiment">Experiment</a><a href="#fleet">Fleet</a><a href="#systems">Systems</a>
   </nav>
@@ -54,7 +54,7 @@
     <svg id="eqchart" viewBox="0 0 720 150" preserveAspectRatio="none"></svg>
   </div>
   <script>
-  window.SPEAR_EQ = [["2026-07-31",25000],["2026-08-03",24896],["2026-08-04",26472],["2026-08-05",25948],["2026-08-06",25627],["2026-08-07",25992],["2026-08-10",26522],["2026-08-11",26338],["2026-08-12",27067]];
+  window.SPEAR_EQ = [["2026-07-31",25000],["2026-08-03",24896],["2026-08-04",26472],["2026-08-05",25948],["2026-08-06",25627],["2026-08-07",25992],["2026-08-10",26522],["2026-08-11",26338],["2026-08-12",27067],["2026-08-13",27590]];
   (function(){
     var eq=window.SPEAR_EQ||[]; if(eq.length<2) return;
     var W=720,H=150,pad=6,vals=eq.map(function(p){return p[1]}),mn=Math.min.apply(null,vals),mx=Math.max.apply(null,vals);
@@ -76,30 +76,30 @@
   </div>
 
   <!--SPEAR_START-->
-  <h2 id="live">Live paper book &mdash; SPEAR <span class="tag">$25,000 start &middot; as of 2026-08-12</span></h2>
+  <h2 id="live">Live paper book &mdash; SPEAR <span class="tag">$25,000 start &middot; as of 2026-08-13</span></h2>
   <p class="note">The fleet winner, traded forward for real (paper). SPEAR = momentum 6-1, top 5, inverse-vol, SPY-above-200-day trend gate (<b class="grn">ON / risk-on</b>). Marked to market daily.</p>
   <div class="grid">
-    <div class="card"><h3>Book value</h3><div class="big">$27,067</div><div class="row"><span class="k">Since start</span><span class="grn">+8.3%</span></div><div class="row"><span class="k">Cash</span><span>$-1</span></div></div>
-    <div class="card"><h3>Positions</h3><div class="big">5</div><div class="row"><span class="k">Last rebalance</span><span>2026-08-12</span></div><div class="row"><span class="k">As of</span><span>2026-08-12</span></div></div>
+    <div class="card"><h3>Book value</h3><div class="big">$27,590</div><div class="row"><span class="k">Since start</span><span class="grn">+10.4%</span></div><div class="row"><span class="k">Cash</span><span>$-0</span></div></div>
+    <div class="card"><h3>Positions</h3><div class="big">5</div><div class="row"><span class="k">Last rebalance</span><span>2026-08-13</span></div><div class="row"><span class="k">As of</span><span>2026-08-13</span></div></div>
   </div>
-  <table><tr><th>Ticker</th><th>Price</th><th>Shares</th><th>Value</th></tr><tr><td><b>PANW</b></td><td>$387.01</td><td>17.671</td><td>$6,839</td></tr><tr><td><b>CRWD</b></td><td>$221.78</td><td>30.837</td><td>$6,839</td></tr><tr><td><b>AMD</b></td><td>$482.93</td><td>11.296</td><td>$5,455</td></tr><tr><td><b>DELL</b></td><td>$484.50</td><td>8.457</td><td>$4,097</td></tr><tr><td><b>MU</b></td><td>$911.29</td><td>4.212</td><td>$3,838</td></tr></table>
+  <table><tr><th>Ticker</th><th>Price</th><th>Shares</th><th>Value</th></tr><tr><td><b>PANW</b></td><td>$396.00</td><td>17.604</td><td>$6,971</td></tr><tr><td><b>CRWD</b></td><td>$225.53</td><td>30.911</td><td>$6,971</td></tr><tr><td><b>AMD</b></td><td>$483.01</td><td>11.489</td><td>$5,549</td></tr><tr><td><b>DELL</b></td><td>$494.51</td><td>8.440</td><td>$4,174</td></tr><tr><td><b>MU</b></td><td>$949.83</td><td>4.131</td><td>$3,924</td></tr></table>
   <p class="note">Semis/hardware heavy &mdash; momentum, not a view. Below the 200-day, SPEAR rotates to cash at the next month-end.</p>
   <!--SPEAR_END-->
 
-            <!--EXPLAIN_START-->
+              <!--EXPLAIN_START-->
   <h2 id="explain">Why the book looks like this today</h2>
-  <div class="card"><p class="note" style="color:var(--tx);margin:0"><b>SPEAR-2026-08-12.</b> SPEAR is a once-a-month momentum rotation. Each month it ranks the 48-name universe by 6-month price return (skipping the most recent month to avoid noise), buys the top 5, and weights them inverse to volatility so the calmer names carry more of the book. A trend gate keeps it in cash whenever SPY is below its 200-day average. Right now the trend gate is ON &mdash; SPY closed above its 200-day average, so the book is fully invested. Current holdings: PANW, CRWD, AMD, DELL, MU. It only trades at month-end, so day-to-day moves are the book marking to market, not new decisions.</p></div>
+  <div class="card"><p class="note" style="color:var(--tx);margin:0"><b>SPEAR-2026-08-13.</b> SPEAR is a once-a-month momentum rotation. Each month it ranks the 48-name universe by 6-month price return (skipping the most recent month to avoid noise), buys the top 5, and weights them inverse to volatility so the calmer names carry more of the book. A trend gate keeps it in cash whenever SPY is below its 200-day average. Right now the trend gate is ON &mdash; SPY closed above its 200-day average, so the book is fully invested. Current holdings: PANW, CRWD, AMD, DELL, MU. It only trades at month-end, so day-to-day moves are the book marking to market, not new decisions.</p></div>
   <p class="note">Copy the paragraph above into a search engine or a second AI for an independent read on the logic.</p>
   <!--EXPLAIN_END-->
 
-            <!--BATTERY_START-->
+              <!--BATTERY_START-->
   <h2 id="battery">Nightly battery &mdash; latest run (auto)</h2>
-  <div class="card"><h3>Walk-forward OOS &middot; 2026-08-11 02:05 (full)</h3><div class="row"><span class="k">Stable baseline</span><span><span class="grn">+3.1%</span> edge &middot; 30% CAGR &middot; Sharpe 1.15</span></div><div class="row"><span class="k">Riskier concentrated</span><span><span class="grn">+32.8%</span> edge &middot; 59% CAGR &middot; Sharpe 1.56</span></div><div class="row"><span class="k">Turtle defensive</span><span><span class="red">-8.6%</span> edge &middot; 18% CAGR &middot; Sharpe 1.03</span></div><p class="note">Best backtest sweep: 3 names / 12-mo &rarr; 71% CAGR. Auto-raise risk next? no.</p></div>
+  <div class="card"><h3>Walk-forward OOS &middot; 2026-08-13 02:05 (full)</h3><div class="row"><span class="k">Stable baseline</span><span><span class="grn">+3.2%</span> edge &middot; 30% CAGR &middot; Sharpe 1.15</span></div><div class="row"><span class="k">Riskier concentrated</span><span><span class="grn">+33.1%</span> edge &middot; 60% CAGR &middot; Sharpe 1.57</span></div><div class="row"><span class="k">Turtle defensive</span><span><span class="red">-8.6%</span> edge &middot; 18% CAGR &middot; Sharpe 1.03</span></div><p class="note">Best backtest sweep: 3 names / 12-mo &rarr; 71% CAGR. Auto-raise risk next? no.</p></div>
   <!--BATTERY_END-->
 
-            <!--EXPERIMENT_START-->
+              <!--EXPERIMENT_START-->
   <h2 id="experiment">Tonight's rotating experiment</h2>
-  <div class="card"><p class="note" style="color:var(--tx);margin:0"><b>Very fast 3-month momentum, top 5</b> &mdash; out-of-sample edge vs equal-weight <span class="grn">+14.1%</span> (41% CAGR, Sharpe 1.3). <span class="mono">EXP-2026-08-10</span></p></div>
+  <div class="card"><p class="note" style="color:var(--tx);margin:0"><b>Fast 6-month momentum, top 5</b> &mdash; out-of-sample edge vs equal-weight <span class="grn">+21.7%</span> (48% CAGR, Sharpe 1.42). <span class="mono">EXP-2026-08-12</span></p></div>
   <p class="note">A different variant is tested each night on fresh data. Weekly review decides whether it graduates or gets dropped.</p>
   <!--EXPERIMENT_END-->
 
