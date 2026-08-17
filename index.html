@@ -41,7 +41,7 @@
 <body>
 <div class="wrap">
   <h1>Darit Capital <span class="tag">paper only</span></h1>
-  <p class="sub">Systematic trading research &middot; nightly "Dr. Strange" battery <!--BAT-->(last run 2026-08-15 02:05)<!--/BAT--> &middot; SPEAR marked to market daily</p>
+  <p class="sub">Systematic trading research &middot; nightly "Dr. Strange" battery <!--BAT-->(last run 2026-08-16 02:05)<!--/BAT--> &middot; SPEAR marked to market daily</p>
   <nav style="display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0">
     <a href="#portfolio">Portfolio</a><a href="#live">Live book</a><a href="#explain">Why today</a><a href="#experiment">Experiment</a><a href="#fleet">Fleet</a><a href="#systems">Systems</a>
   </nav>
@@ -86,20 +86,20 @@
   <p class="note">Semis/hardware heavy &mdash; momentum, not a view. Below the 200-day, SPEAR rotates to cash at the next month-end.</p>
   <!--SPEAR_END-->
 
-                  <!--EXPLAIN_START-->
+                    <!--EXPLAIN_START-->
   <h2 id="explain">Why the book looks like this today</h2>
   <div class="card"><p class="note" style="color:var(--tx);margin:0"><b>SPEAR-2026-08-14.</b> SPEAR is a once-a-month momentum rotation. Each month it ranks the 48-name universe by 6-month price return (skipping the most recent month to avoid noise), buys the top 5, and weights them inverse to volatility so the calmer names carry more of the book. A trend gate keeps it in cash whenever SPY is below its 200-day average. Right now the trend gate is ON &mdash; SPY closed above its 200-day average, so the book is fully invested. Current holdings: PANW, CRWD, AMD, DELL, MU. It only trades at month-end, so day-to-day moves are the book marking to market, not new decisions.</p></div>
   <p class="note">Copy the paragraph above into a search engine or a second AI for an independent read on the logic.</p>
   <!--EXPLAIN_END-->
 
-                  <!--BATTERY_START-->
+                    <!--BATTERY_START-->
   <h2 id="battery">Nightly battery &mdash; latest run (auto)</h2>
-  <div class="card"><h3>Walk-forward OOS &middot; 2026-08-15 02:05 (full)</h3><div class="row"><span class="k">Stable baseline</span><span><span class="grn">+3.3%</span> edge &middot; 30% CAGR &middot; Sharpe 1.16</span></div><div class="row"><span class="k">Riskier concentrated</span><span><span class="grn">+33.3%</span> edge &middot; 60% CAGR &middot; Sharpe 1.57</span></div><div class="row"><span class="k">Turtle defensive</span><span><span class="red">-8.6%</span> edge &middot; 18% CAGR &middot; Sharpe 1.03</span></div><p class="note">Best backtest sweep: 3 names / 12-mo &rarr; 72% CAGR. Auto-raise risk next? no.</p></div>
+  <div class="card"><h3>Walk-forward OOS &middot; 2026-08-16 02:05 (full)</h3><div class="row"><span class="k">Stable baseline</span><span><span class="grn">+3.3%</span> edge &middot; 30% CAGR &middot; Sharpe 1.16</span></div><div class="row"><span class="k">Riskier concentrated</span><span><span class="grn">+33.3%</span> edge &middot; 60% CAGR &middot; Sharpe 1.57</span></div><div class="row"><span class="k">Turtle defensive</span><span><span class="red">-8.6%</span> edge &middot; 18% CAGR &middot; Sharpe 1.03</span></div><p class="note">Best backtest sweep: 3 names / 12-mo &rarr; 72% CAGR. Auto-raise risk next? no.</p></div>
   <!--BATTERY_END-->
 
-                  <!--EXPERIMENT_START-->
+                    <!--EXPERIMENT_START-->
   <h2 id="experiment">Tonight's rotating experiment</h2>
-  <div class="card"><p class="note" style="color:var(--tx);margin:0"><b>Long 120-day vol lookback</b> &mdash; out-of-sample edge vs equal-weight <span class="grn">+3.2%</span> (30% CAGR, Sharpe 1.15). <span class="mono">EXP-2026-08-14</span></p></div>
+  <div class="card"><p class="note" style="color:var(--tx);margin:0"><b>Survivorship check: drop the 3 biggest movers</b> &mdash; out-of-sample edge vs equal-weight <span class="red">-0.1%</span> (27% CAGR, Sharpe 1.1). <span class="mono">EXP-2026-08-14</span></p></div>
   <p class="note">A different variant is tested each night on fresh data. Weekly review decides whether it graduates or gets dropped.</p>
   <!--EXPERIMENT_END-->
 
