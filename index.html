@@ -33,9 +33,20 @@
   .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--mut);margin-left:auto}
   .banner{background:linear-gradient(90deg,#1f2937,#161b22);border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:10px;padding:13px 16px;margin:18px 0} .banner b{color:var(--acc)}
   .chartwrap{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin:14px 0}
-  .chartwrap svg{width:100%;height:240px;display:block;margin-top:6px}
+  .idxpanel{width:100%;height:200px;display:block;margin-top:4px}
+  .panel{margin:6px 0 10px} .panel+.panel{border-top:1px dashed var(--line);padding-top:10px}
+  .panel-h{font-size:13px;font-weight:600;margin:2px 0 4px}
+  .modetoggle{display:inline-flex;border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-bottom:6px}
+  .mode-btn{background:transparent;color:var(--mut);border:none;font:600 12px -apple-system,Segoe UI,Roboto,sans-serif;padding:6px 14px;cursor:pointer;transition:.12s}
+  .mode-btn+.mode-btn{border-left:1px solid var(--line)}
+  .mode-btn.active{background:var(--acc);color:#0d1117}
   .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px}
   .lg .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:middle}
+  .big .biglbl{font-size:13px;font-weight:400}
+  .scalednote{font-size:11px;font-weight:400;color:var(--mut)}
+  .wkbadge{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:20px;margin:6px 0 8px;border:1px solid var(--line);color:var(--tx)}
+  .wkbadge.grn{background:rgba(63,185,80,.12);border-color:rgba(63,185,80,.4);color:var(--grn)}
+  .wkbadge.red{background:rgba(248,81,73,.12);border-color:rgba(248,81,73,.4);color:var(--red)}
   /* decision ledger */
   .ledger{display:flex;flex-direction:column;gap:10px}
   .lcard{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
@@ -72,15 +83,27 @@
   <nav><a href="#portfolio">Portfolio</a><a href="#ledger">Decision Ledger</a><a href="#options">Options</a><a href="#holdings">Holdings</a><a href="#systems">Systems</a><a href="#research">Research</a></nav>
   <div class="banner"><b>A learning book, tracked honestly.</b> Two edges run side by side &mdash; directional momentum and option-selling &mdash; so we can see <b>when</b> each one works, not just chase returns. Every number below is paper. The Decision Ledger explains every move in plain English.</div>
   <section id="portfolio">
-  <h2>Portfolio &mdash; growth of $100 <span class="tag">indexed, each rebased to 100 at its own start</span></h2>
-  <p class="note">Every live book rebased to 100 the day it went live, so a $25k momentum book and a $400k premium book share one axis. Watch the <b>shapes</b>: direction (SPEAR/JAVELIN) climbs and gives back; premium (grokmesa) grinds nearly flat, then steps. Two different edges earning at different times &mdash; that is the whole project. <b>JAVELIN (weekly) vs SPEAR (monthly)</b> differ by exactly one rule: the cleanest comparison on the board.</p>
+  <h2>Portfolio &mdash; return since each system went live <span class="tag">toggle: % return &middot; rebased-to-100</span></h2>
+  <p class="note">Default view is <b>% return from each book&rsquo;s own start</b>, so a flat premium book and a swingy momentum book are both readable on one axis (a system that barely moves no longer collapses onto the baseline). <b>Directional</b> systems (top panel) climb and give back; <b>option-income</b> (bottom) grinds nearly flat, then steps &mdash; two edges earning at different times. The faint dashed line is the start; each line ends in a labeled dot. On the cards, <b>Same return on $10k</b> translates every return onto a real $10,000 book &mdash; grokmesa is modeled on ~$400k paper, so read its <b>%</b>, not its paper dollars.</p>
   <div class="chartwrap">
-    <div class="legend"><span class="lg"><span class="dot" style="background:#58a6ff"></span>SPEAR <span class="mut">&middot; monthly</span></span><span class="lg"><span class="dot" style="background:#d29922"></span>JAVELIN <span class="mut">&middot; weekly</span></span><span class="lg"><span class="dot" style="background:#3fb950"></span>grokmesa <span class="mut">&middot; daily check</span></span></div>
-    <svg id="idxchart" viewBox="0 0 720 240" preserveAspectRatio="none"></svg>
+    <div class="modetoggle" role="group" aria-label="return display mode">
+      <button class="mode-btn active" data-mode="pct">% Return from start</button>
+      <button class="mode-btn" data-mode="idx">Rebased to 100</button>
+    </div>
+    <div class="panel" data-fam="dir">
+      <div class="panel-h">Directional systems <span class="mut">&middot; momentum &mdash; climbs and gives back</span></div>
+      <div class="legend"><span class="lg"><span class="dot" style="background:#58a6ff"></span>SPEAR <span class="mut">&middot; monthly</span></span><span class="lg"><span class="dot" style="background:#d29922"></span>JAVELIN <span class="mut">&middot; weekly</span></span></div>
+      <svg class="idxpanel" data-fam="dir" viewBox="0 0 720 200" preserveAspectRatio="none"></svg>
+    </div>
+    <div class="panel" data-fam="opt">
+      <div class="panel-h">Options-income systems <span class="mut">&middot; premium &mdash; grinds nearly flat, then steps</span></div>
+      <div class="legend"><span class="lg"><span class="dot" style="background:#3fb950"></span>grokmesa <span class="mut">&middot; daily check</span></span></div>
+      <svg class="idxpanel" data-fam="opt" viewBox="0 0 720 200" preserveAspectRatio="none"></svg>
+    </div>
     <div class="note" id="idxrange"></div>
   </div>
-  <div class="grid"><div class="card"><h3 style="color:#58a6ff">SPEAR <span class="tag">monthly</span></h3><div class="big">$24,753</div><div class="row"><span class="k">Since start</span><span class="red">-1.0%</span></div><div class="row"><span class="k">This week</span><span class="red">-9.2%</span></div><div class="row"><span class="k">Start book</span><span>$25,000</span></div></div><div class="card"><h3 style="color:#d29922">JAVELIN <span class="tag">weekly</span></h3><div class="big">$25,000</div><div class="row"><span class="k">Since start</span><span class="grn">+0.0%</span></div><div class="row"><span class="k">This week</span><span class="grn">+0.0%</span></div><div class="row"><span class="k">Start book</span><span>$25,000</span></div></div><div class="card"><h3 style="color:#3fb950">grokmesa <span class="tag">daily check</span></h3><div class="big">$400,402</div><div class="row"><span class="k">Since start</span><span class="grn">+0.1%</span></div><div class="row"><span class="k">This week</span><span class="grn">+0.1%</span></div><div class="row"><span class="k">Start book</span><span>$400,000</span></div></div></div>
-  <script>window.IDX = {"SPEAR": {"color": "#58a6ff", "pts": [["2026-07-31", 100.0], ["2026-08-03", 99.58], ["2026-08-04", 105.89], ["2026-08-05", 103.79], ["2026-08-06", 102.51], ["2026-08-07", 103.97], ["2026-08-10", 106.09], ["2026-08-11", 105.35], ["2026-08-12", 108.27], ["2026-08-13", 110.36], ["2026-08-14", 110.15], ["2026-08-17", 109.05], ["2026-08-18", 106.4], ["2026-08-19", 102.01], ["2026-08-20", 100.44], ["2026-08-21", 101.56], ["2026-08-24", 99.01]]}, "JAVELIN": {"color": "#d29922", "pts": [["2026-08-21", 100.0], ["2026-08-24", 100.0]]}, "grokmesa": {"color": "#3fb950", "pts": [["2026-08-15", 100.0], ["2026-08-17", 100.01], ["2026-08-18", 99.98], ["2026-08-19", 100.06], ["2026-08-20", 99.97], ["2026-08-21", 100.06], ["2026-08-24", 100.09]]}};</script>
+  <div class="grid"><div class="card"><h3 style="color:#58a6ff">SPEAR <span class="tag">monthly</span></h3><div class="big red">-1.0%<span class="mut biglbl"> since start</span></div><div class="wkbadge red">Last 7 days &middot; -9.2% &middot; $-2,510</div><div class="row"><span class="k">Book value</span><span>$24,753</span></div><div class="row"><span class="k">Start book</span><span>$25,000</span></div><div class="row"><span class="k" title="The same % return applied to a real $10,000 book">Same return on $10k</span><span class="red">$-99</span></div></div><div class="card"><h3 style="color:#d29922">JAVELIN <span class="tag">weekly</span></h3><div class="big grn">+0.0%<span class="mut biglbl"> since start</span></div><div class="wkbadge grn">Last 7 days &middot; +0.0% &middot; $+0</div><div class="row"><span class="k">Book value</span><span>$25,000</span></div><div class="row"><span class="k">Start book</span><span>$25,000</span></div><div class="row"><span class="k" title="The same % return applied to a real $10,000 book">Same return on $10k</span><span class="grn">$+0</span></div></div><div class="card"><h3 style="color:#3fb950">grokmesa <span class="tag">daily check</span></h3><div class="big grn">+0.1%<span class="mut biglbl"> since start</span></div><div class="wkbadge grn">Last 7 days &middot; +0.1% &middot; $+303</div><div class="row"><span class="k">Book value</span><span>$400,402</span></div><div class="row"><span class="k">Start book</span><span>$400,000</span></div><div class="row"><span class="k" title="The same % return applied to a real $10,000 book">Same return on $10k</span><span class="grn">$+9</span></div><div class="note" style="margin-top:6px">Modeled on a ~$400k paper book &mdash; read the % return, not the paper dollars.</div></div></div>
+  <script>window.IDX = {"SPEAR": {"color": "#58a6ff", "pts": [["2026-07-31", 100.0], ["2026-08-03", 99.584], ["2026-08-04", 105.8868], ["2026-08-05", 103.7918], ["2026-08-06", 102.5079], ["2026-08-07", 103.9689], ["2026-08-10", 106.0862], ["2026-08-11", 105.3521], ["2026-08-12", 108.2698], ["2026-08-13", 110.3586], ["2026-08-14", 110.1466], ["2026-08-17", 109.0527], ["2026-08-18", 106.3958], ["2026-08-19", 102.012], ["2026-08-20", 100.4403], ["2026-08-21", 101.5588], ["2026-08-24", 99.013]], "family": "dir", "since": -0.99, "week": -9.21}, "JAVELIN": {"color": "#d29922", "pts": [["2026-08-21", 100.0], ["2026-08-24", 100.0]], "family": "dir", "since": 0.0, "week": 0.0}, "grokmesa": {"color": "#3fb950", "pts": [["2026-08-15", 100.0], ["2026-08-17", 100.0132], ["2026-08-18", 99.9835], ["2026-08-19", 100.0607], ["2026-08-20", 99.9717], ["2026-08-21", 100.0621], ["2026-08-24", 100.089]], "family": "opt", "since": 0.09, "week": 0.08}};</script>
   </section>
   <section id="ledger">
   <h2>Decision Ledger <span class="tag">what the machines decided, and why</span></h2>
@@ -97,7 +120,7 @@
   </div>
   <div class="card"><h3 style="color:#d29922">SENTINEL &mdash; OPEN <span class="tag">running degraded, 2 of 3 views</span></h3><div class="sview"><span class="slite pending"></span>V1 CANARY 20-day P&amp;L <span class="mut">&middot; CANARY not built — the degraded state is itself worth teaching</span></div><div class="sview"><span class="slite ok"></span>V2 vol-term (VIX&gt;VIX3M or ≥25) <span class="mut">&middot; contango / calm</span></div><div class="sview"><span class="slite ok"></span>V3 trend (SPX&lt;100dma or ≥5% off high) <span class="mut">&middot; above trend</span></div></div>
   <h3 class="subh">Open rungs &mdash; payoff per put</h3>
-  <div class="rungs"><div class="rung"><div class="rungtop"><b>$744 put</b> &middot; exp 2026-09-18 &middot; credit $368 &middot; <span class="grn">max profit $368</span></div><svg viewBox="0 0 306 46" class="payoff" preserveAspectRatio="none"><rect x="6" y="18" width="130.0" height="8" fill="#f85149" opacity="0.5"/><rect x="136.0" y="18" width="164.0" height="8" fill="#3fb950" opacity="0.5"/><line x1="136.0" y1="12" x2="136.0" y2="32" stroke="#8b949e" stroke-dasharray="3 2"/><line x1="150.3" y1="12" x2="150.3" y2="32" stroke="#d29922"/><line x1="234.6" y1="10" x2="234.6" y2="34" stroke="#e6edf3" stroke-width="2"/><text x="234.6" y="8" fill="#e6edf3" font-size="8" text-anchor="middle">spot $766</text><text x="150.3" y="44" fill="#d29922" font-size="8" text-anchor="middle">strike $744</text><text x="136.0" y="44" fill="#8b949e" font-size="8" text-anchor="middle">B/E $740</text></svg><div class="note" style="margin:2px 0 0">Win anywhere SPY closes above <b>$740.32</b>.</div></div><div class="rung"><div class="rungtop"><b>$737 put</b> &middot; exp 2026-09-25 &middot; credit $426 &middot; <span class="grn">max profit $426</span></div><svg viewBox="0 0 306 46" class="payoff" preserveAspectRatio="none"><rect x="6" y="18" width="116.1" height="8" fill="#f85149" opacity="0.5"/><rect x="122.1" y="18" width="177.9" height="8" fill="#3fb950" opacity="0.5"/><line x1="122.1" y1="12" x2="122.1" y2="32" stroke="#8b949e" stroke-dasharray="3 2"/><line x1="137.2" y1="12" x2="137.2" y2="32" stroke="#d29922"/><line x1="239.5" y1="10" x2="239.5" y2="34" stroke="#e6edf3" stroke-width="2"/><text x="239.5" y="8" fill="#e6edf3" font-size="8" text-anchor="middle">spot $766</text><text x="137.2" y="44" fill="#d29922" font-size="8" text-anchor="middle">strike $737</text><text x="122.1" y="44" fill="#8b949e" font-size="8" text-anchor="middle">B/E $733</text></svg><div class="note" style="margin:2px 0 0">Win anywhere SPY closes above <b>$732.74</b>.</div></div><div class="rung"><div class="rungtop"><b>$728 put</b> &middot; exp 2026-09-30 &middot; credit $454 &middot; <span class="grn">max profit $454</span></div><svg viewBox="0 0 306 46" class="payoff" preserveAspectRatio="none"><rect x="6" y="18" width="102.6" height="8" fill="#f85149" opacity="0.5"/><rect x="108.6" y="18" width="191.4" height="8" fill="#3fb950" opacity="0.5"/><line x1="108.6" y1="12" x2="108.6" y2="32" stroke="#8b949e" stroke-dasharray="3 2"/><line x1="123.2" y1="12" x2="123.2" y2="32" stroke="#d29922"/><line x1="244.7" y1="10" x2="244.7" y2="34" stroke="#e6edf3" stroke-width="2"/><text x="244.7" y="8" fill="#e6edf3" font-size="8" text-anchor="middle">spot $766</text><text x="123.2" y="44" fill="#d29922" font-size="8" text-anchor="middle">strike $728</text><text x="108.6" y="44" fill="#8b949e" font-size="8" text-anchor="middle">B/E $723</text></svg><div class="note" style="margin:2px 0 0">Win anywhere SPY closes above <b>$723.47</b>.</div></div><div class="rung"><div class="rungtop"><b>$727 put</b> &middot; exp 2026-10-02 &middot; credit $427 &middot; <span class="grn">max profit $427</span></div><svg viewBox="0 0 306 46" class="payoff" preserveAspectRatio="none"><rect x="6" y="18" width="102.2" height="8" fill="#f85149" opacity="0.5"/><rect x="108.2" y="18" width="191.8" height="8" fill="#3fb950" opacity="0.5"/><line x1="108.2" y1="12" x2="108.2" y2="32" stroke="#8b949e" stroke-dasharray="3 2"/><line x1="121.8" y1="12" x2="121.8" y2="32" stroke="#d29922"/><line x1="245.2" y1="10" x2="245.2" y2="34" stroke="#e6edf3" stroke-width="2"/><text x="245.2" y="8" fill="#e6edf3" font-size="8" text-anchor="middle">spot $766</text><text x="121.8" y="44" fill="#d29922" font-size="8" text-anchor="middle">strike $727</text><text x="108.2" y="44" fill="#8b949e" font-size="8" text-anchor="middle">B/E $723</text></svg><div class="note" style="margin:2px 0 0">Win anywhere SPY closes above <b>$722.73</b>.</div></div></div>
+  <div class="rungs"><div class="rung"><div class="rungtop"><b>$744 put</b> &middot; exp 2026-09-18 &middot; credit $368 &middot; <span class="grn">max profit $368</span></div><svg viewBox="0 0 306 46" class="payoff" preserveAspectRatio="none"><rect x="6" y="18" width="134.2" height="8" fill="#f85149" opacity="0.5"/><rect x="140.2" y="18" width="159.8" height="8" fill="#3fb950" opacity="0.5"/><line x1="140.2" y1="12" x2="140.2" y2="32" stroke="#8b949e" stroke-dasharray="3 2"/><line x1="154.9" y1="12" x2="154.9" y2="32" stroke="#d29922"/><line x1="232.9" y1="10" x2="232.9" y2="34" stroke="#e6edf3" stroke-width="2"/><text x="232.9" y="8" fill="#e6edf3" font-size="8" text-anchor="middle">spot $763</text><text x="154.9" y="44" fill="#d29922" font-size="8" text-anchor="middle">strike $744</text><text x="140.2" y="44" fill="#8b949e" font-size="8" text-anchor="middle">B/E $740</text></svg><div class="note" style="margin:2px 0 0">Win anywhere SPY closes above <b>$740.32</b>.</div></div><div class="rung"><div class="rungtop"><b>$737 put</b> &middot; exp 2026-09-25 &middot; credit $426 &middot; <span class="grn">max profit $426</span></div><svg viewBox="0 0 306 46" class="payoff" preserveAspectRatio="none"><rect x="6" y="18" width="119.4" height="8" fill="#f85149" opacity="0.5"/><rect x="125.4" y="18" width="174.6" height="8" fill="#3fb950" opacity="0.5"/><line x1="125.4" y1="12" x2="125.4" y2="32" stroke="#8b949e" stroke-dasharray="3 2"/><line x1="141.0" y1="12" x2="141.0" y2="32" stroke="#d29922"/><line x1="238.0" y1="10" x2="238.0" y2="34" stroke="#e6edf3" stroke-width="2"/><text x="238.0" y="8" fill="#e6edf3" font-size="8" text-anchor="middle">spot $763</text><text x="141.0" y="44" fill="#d29922" font-size="8" text-anchor="middle">strike $737</text><text x="125.4" y="44" fill="#8b949e" font-size="8" text-anchor="middle">B/E $733</text></svg><div class="note" style="margin:2px 0 0">Win anywhere SPY closes above <b>$732.74</b>.</div></div><div class="rung"><div class="rungtop"><b>$728 put</b> &middot; exp 2026-09-30 &middot; credit $454 &middot; <span class="grn">max profit $454</span></div><svg viewBox="0 0 306 46" class="payoff" preserveAspectRatio="none"><rect x="6" y="18" width="105.3" height="8" fill="#f85149" opacity="0.5"/><rect x="111.3" y="18" width="188.7" height="8" fill="#3fb950" opacity="0.5"/><line x1="111.3" y1="12" x2="111.3" y2="32" stroke="#8b949e" stroke-dasharray="3 2"/><line x1="126.3" y1="12" x2="126.3" y2="32" stroke="#d29922"/><line x1="243.5" y1="10" x2="243.5" y2="34" stroke="#e6edf3" stroke-width="2"/><text x="243.5" y="8" fill="#e6edf3" font-size="8" text-anchor="middle">spot $763</text><text x="126.3" y="44" fill="#d29922" font-size="8" text-anchor="middle">strike $728</text><text x="111.3" y="44" fill="#8b949e" font-size="8" text-anchor="middle">B/E $723</text></svg><div class="note" style="margin:2px 0 0">Win anywhere SPY closes above <b>$723.47</b>.</div></div><div class="rung"><div class="rungtop"><b>$727 put</b> &middot; exp 2026-10-02 &middot; credit $427 &middot; <span class="grn">max profit $427</span></div><svg viewBox="0 0 306 46" class="payoff" preserveAspectRatio="none"><rect x="6" y="18" width="104.9" height="8" fill="#f85149" opacity="0.5"/><rect x="110.9" y="18" width="189.1" height="8" fill="#3fb950" opacity="0.5"/><line x1="110.9" y1="12" x2="110.9" y2="32" stroke="#8b949e" stroke-dasharray="3 2"/><line x1="124.8" y1="12" x2="124.8" y2="32" stroke="#d29922"/><line x1="244.1" y1="10" x2="244.1" y2="34" stroke="#e6edf3" stroke-width="2"/><text x="244.1" y="8" fill="#e6edf3" font-size="8" text-anchor="middle">spot $763</text><text x="124.8" y="44" fill="#d29922" font-size="8" text-anchor="middle">strike $727</text><text x="110.9" y="44" fill="#8b949e" font-size="8" text-anchor="middle">B/E $723</text></svg><div class="note" style="margin:2px 0 0">Win anywhere SPY closes above <b>$722.73</b>.</div></div></div>
   </section>
   <section id="holdings">
   <h2>SPEAR holdings &mdash; why these five <span class="tag">tap any chart to expand</span></h2>
@@ -115,8 +138,8 @@
   </section>
   <section id="research">
   <details><summary><b>Research (backtests &amp; nightly battery)</b> &mdash; the live decisions own the top; history lives here</summary>
-  <div class="card" style="margin-top:12px"><h3>Nightly battery &mdash; walk-forward OOS (2026-08-24 02:05)</h3><div class="row"><span class="k">Stable baseline</span><span><span class="grn">+3.0%</span> edge &middot; 30% CAGR &middot; Sharpe 1.14</span></div><div class="row"><span class="k">Riskier concentrated</span><span><span class="grn">+32.5%</span> edge &middot; 59% CAGR &middot; Sharpe 1.55</span></div><div class="row"><span class="k">Turtle defensive</span><span><span class="red">-8.7%</span> edge &middot; 18% CAGR &middot; Sharpe 1.02</span></div><p class="note">Auto-raise risk next? no. Concentration stays a probe: dropping the 3 biggest movers took the stable edge from +3.1% to ~0%.</p></div>
-  <div class="card"><h3>Tonight’s rotating experiment</h3><p class="note" style="color:var(--tx);margin:0"><b>Trend-gated defensive (SPY 200-dma)</b> &mdash; OOS edge vs equal-weight <span class="red">-4.9%</span> (22% CAGR, Sharpe 1.01). <span class="mono">EXP-2026-08-21</span></p><p class="note"><b>Graduation bar (pre-registered):</b> an experiment becomes a named PAPER system only if it shows positive excess in ≥3 independent nightly runs, keeps maxDD ≤35%, and survives the drop-top-3 concentration check with excess &gt; 0. Anything else rotates out.</p></div>
+  <div class="card" style="margin-top:12px"><h3>Nightly battery &mdash; walk-forward OOS (2026-08-25 02:05)</h3><div class="row"><span class="k">Stable baseline</span><span><span class="grn">+2.9%</span> edge &middot; 29% CAGR &middot; Sharpe 1.14</span></div><div class="row"><span class="k">Riskier concentrated</span><span><span class="grn">+32.2%</span> edge &middot; 59% CAGR &middot; Sharpe 1.55</span></div><div class="row"><span class="k">Turtle defensive</span><span><span class="red">-8.7%</span> edge &middot; 18% CAGR &middot; Sharpe 1.01</span></div><p class="note">Auto-raise risk next? no. Concentration stays a probe: dropping the 3 biggest movers took the stable edge from +3.1% to ~0%.</p></div>
+  <div class="card"><h3>Tonight’s rotating experiment</h3><p class="note" style="color:var(--tx);margin:0"><b>Very fast 3-month momentum, top 5</b> &mdash; OOS edge vs equal-weight <span class="grn">+13.8%</span> (40% CAGR, Sharpe 1.28). <span class="mono">EXP-2026-08-24</span></p><p class="note"><b>Graduation bar (pre-registered):</b> an experiment becomes a named PAPER system only if it shows positive excess in ≥3 independent nightly runs, keeps maxDD ≤35%, and survives the drop-top-3 concentration check with excess &gt; 0. Anything else rotates out.</p></div>
   <div class="card"><h3>Account fleet &mdash; excess vs equal-weight (1993–2026)</h3>  <table><tr><th>Account</th><th>What</th><th>Excess/yr</th><th>Max DD</th><th>Verdict</th></tr><tr><td>A3 <b>SPEAR</b></td><td>top-5 + trend gate</td><td class="grn">+7.6%</td><td>-36%</td><td class="grn">&check; return + defense</td></tr><tr><td>A1 ANVIL</td><td>base momentum</td><td class="grn">+2.8%</td><td>-54%</td><td class="amb">borderline</td></tr><tr><td>A4 MAGPIE</td><td>naked top-5</td><td class="grn">+9.9%</td><td class="red">-69%</td><td class="red">&times; blow-up risk</td></tr><tr><td>A2 TURTLE</td><td>base + gate</td><td class="red">-0.7%</td><td>-34%</td><td class="amb">defense only</td></tr><tr><td>A6 GYRO</td><td>vol-targeted</td><td class="red">-5.5%</td><td>-31%</td><td class="red">&times; (see vol-regime note)</td></tr></table><p class="note">A6 GYRO is why vol-regime <b>sizing</b> is a PASS: shrinking into vol expansions de-weights exactly the windows momentum pays. The vol-state flag is logged as a covariate only &mdash; no system reads it.</p></div>
   <div class="grid"><div class="card"><h3>Gate 1 &mdash; engine</h3><div class="big grn">PASS</div><p class="note">Reproduced SPY’s -55% 2008 drawdown &mdash; the math is honest.</p></div>  <div class="card"><h3>Gate 2 &mdash; OOS edge</h3><div class="big grn">PASS</div><p class="note">Cleared every pre-registered bar out-of-sample.</p></div>  <div class="card"><h3>Blind test</h3><div class="big grn">&check;</div><p class="note">Renaming every stock to S00-S49 gave identical results &mdash; the algo picks by the rule, not the name.</p></div></div>
   </details>
@@ -125,32 +148,63 @@
 </div>
 <script>
 (function(){
-  // ---- indexed multi-line chart ----
-  var S=window.IDX||{}, names=Object.keys(S);
-  var sv=document.getElementById('idxchart');
-  if(sv&&names.length){
-    var W=720,H=240,pad=8, all=[], t0=Infinity,t1=-Infinity,v0=Infinity,v1=-Infinity;
+  // ---- return chart: two family panels + %/rebased toggle ----
+  var S=window.IDX||{};
+  var MODE='pct';                                   // default: % return from start
+  var gt0=Infinity, gt1=-Infinity;
+  Object.keys(S).forEach(function(n){S[n].pts.forEach(function(p){
+    var t=Date.parse(p[0]); if(t<gt0)gt0=t; if(t>gt1)gt1=t;})});
+  function drawPanel(sv){
+    var fam=sv.getAttribute('data-fam');
+    var names=Object.keys(S).filter(function(n){return S[n].family===fam;});
+    var panel=sv.parentNode;
+    if(!names.length){ if(panel)panel.style.display='none'; return; }
+    var W=720,H=200,pad=10,padR=74;                 // right pad leaves room for endpoint labels
+    var base=(MODE==='pct')?0:100;
+    var val=function(p){return (MODE==='pct')?(p[1]-100):p[1];};
+    var t0=Infinity,t1=-Infinity,v0=Infinity,v1=-Infinity;
     names.forEach(function(n){S[n].pts.forEach(function(p){
-      var t=Date.parse(p[0]); all.push(t); if(t<t0)t0=t; if(t>t1)t1=t;
-      if(p[1]<v0)v0=p[1]; if(p[1]>v1)v1=p[1];})});
-    v0=Math.min(v0,100); v1=Math.max(v1,100);
+      var t=Date.parse(p[0]); if(t<t0)t0=t; if(t>t1)t1=t;
+      var vv=val(p); if(vv<v0)v0=vv; if(vv>v1)v1=vv;})});
+    v0=Math.min(v0,base); v1=Math.max(v1,base);
+    var span=(v1-v0)||1; v0-=span*0.14; v1+=span*0.14;   // breathing room so flat lines lift off the base
     var dt=(t1-t0)||1, dv=(v1-v0)||1;
-    var X=function(t){return pad+(t-t0)/dt*(W-2*pad)};
-    var Y=function(v){return H-pad-(v-v0)/dv*(H-2*pad)};
+    var X=function(t){return pad+(t-t0)/dt*(W-pad-padR);};
+    var Y=function(v){return H-pad-(v-v0)/dv*(H-2*pad);};
     var out='';
-    // 100 baseline
-    out+='<line x1="'+pad+'" x2="'+(W-pad)+'" y1="'+Y(100).toFixed(1)+'" y2="'+Y(100).toFixed(1)+'" stroke="#30363d" stroke-dasharray="4 4"/>';
-    out+='<text x="'+(W-pad)+'" y="'+(Y(100)-4).toFixed(1)+'" fill="#8b949e" font-size="9" text-anchor="end">100</text>';
+    // faint start baseline (soft dashed gridline, not a bold reference)
+    var by=Y(base).toFixed(1);
+    out+='<line x1="'+pad+'" x2="'+(W-padR)+'" y1="'+by+'" y2="'+by+'" stroke="#8b949e" stroke-opacity="0.22" stroke-width="1" stroke-dasharray="2 6"/>';
+    out+='<text x="'+pad+'" y="'+(Y(base)-4).toFixed(1)+'" fill="#8b949e" fill-opacity="0.65" font-size="9">'+(MODE==='pct'?'0% start':'100')+'</text>';
+    // rank endpoint label y-positions to avoid overlap
+    var ends=names.map(function(n){var p=S[n].pts[S[n].pts.length-1];return {n:n,x:X(Date.parse(p[0])),y:Y(val(p)),v:val(p),c:S[n].color};});
+    ends.sort(function(a,b){return a.y-b.y;});
+    for(var i=1;i<ends.length;i++){ if(ends[i].y-ends[i-1].y<11) ends[i].y=ends[i-1].y+11; }
+    var eByName={}; ends.forEach(function(e){eByName[e.n]=e;});
     names.forEach(function(n){
-      var pts=S[n].pts, c=S[n].color;
-      var dline=pts.map(function(p,i){return (i?'L':'M')+X(Date.parse(p[0])).toFixed(1)+' '+Y(p[1]).toFixed(1)}).join(' ');
-      out+='<path d="'+dline+'" fill="none" stroke="'+c+'" stroke-width="2"/>';
-      var last=pts[pts.length-1];
-      out+='<circle cx="'+X(Date.parse(last[0])).toFixed(1)+'" cy="'+Y(last[1]).toFixed(1)+'" r="3" fill="'+c+'"/>';
+      var pts=S[n].pts,c=S[n].color;
+      var dline=pts.map(function(p,i){return (i?'L':'M')+X(Date.parse(p[0])).toFixed(1)+' '+Y(val(p)).toFixed(1);}).join(' ');
+      out+='<path d="'+dline+'" fill="none" stroke="'+c+'" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>';
+      var lp=pts[pts.length-1], lx=X(Date.parse(lp[0])), ly=Y(val(lp)), e=eByName[n];
+      out+='<circle cx="'+lx.toFixed(1)+'" cy="'+ly.toFixed(1)+'" r="3.4" fill="'+c+'"/>';
+      var lbl=n+' '+(MODE==='pct'?((val(lp)>=0?'+':'')+val(lp).toFixed(1)+'%'):val(lp).toFixed(1));
+      out+='<text x="'+(lx+7).toFixed(1)+'" y="'+(e.y+3).toFixed(1)+'" fill="'+c+'" font-size="9" font-weight="600">'+lbl+'</text>';
     });
     sv.innerHTML=out;
+  }
+  function draw(){ document.querySelectorAll('.idxpanel').forEach(drawPanel); }
+  document.querySelectorAll('.mode-btn').forEach(function(b){
+    b.addEventListener('click',function(){
+      MODE=b.getAttribute('data-mode');
+      document.querySelectorAll('.mode-btn').forEach(function(x){x.classList.toggle('active',x===b);});
+      draw();
+    });
+  });
+  if(Object.keys(S).length){
+    draw();
     var rng=document.getElementById('idxrange');
-    if(rng){var f=new Date(t0),l=new Date(t1);rng.textContent=f.toISOString().slice(0,10)+'  →  '+l.toISOString().slice(0,10)+'  (100 = each book\'s own start)';}
+    if(rng&&isFinite(gt0)){var f=new Date(gt0),l=new Date(gt1);
+      rng.textContent=f.toISOString().slice(0,10)+'  →  '+l.toISOString().slice(0,10)+'  · each line rebased to its own go-live';}
   }
   // ---- SPEAR mini charts ----
   document.querySelectorAll('.mchart').forEach(function(sv){
