@@ -158,7 +158,17 @@
     <div class="card"><h3>Open paper positions</h3><table><tr><th>Resolves</th><th>Bucket</th><th>Side</th><th>Stake</th><th>Edge</th></tr><tr><td>2026-09-19</td><td>New York City be between 70-71°F on September 19</td><td><b>NO</b> @ 0.53</td><td>$16.04</td><td>12.83&cent;</td></tr><tr><td>2026-09-20</td><td>New York City be between 70-71°F on September 20</td><td><b>NO</b> @ 0.645</td><td>$13.45</td><td>10.76&cent;</td></tr><tr><td>2026-09-21</td><td>New York City be between 66-67°F on September 21</td><td><b>NO</b> @ 0.87</td><td>$17.26</td><td>13.81&cent;</td></tr></table></div>
   </div>
   </section>
-  <section id="systems">
+  <section id="feed">
+<!--FEED_START-->
+  <h2 id="feed">Live system feed</h2>
+  <p class="note">Every paper trading system reports here instead of Telegram (changed 2026-09-20 &mdash; the trading chatter was burying the bid alerts). Telegram is now reserved for the Prime bid system. Paper only.</p>
+  <div class="grid">
+  <div class="card"><h3>Self test <span class="pill p-live">ok</span></h3><div class="mut mono">2026-09-20 09:26 &middot; just now</div><pre class="mono" style="white-space:pre-wrap;word-break:break-word;margin:.6rem 0 0;font-size:.82rem;line-height:1.35">hello from dashboard_feed</pre></div>
+  <div class="card"><h3>Route self test <span class="pill p-live">ok</span></h3><div class="mut mono">2026-09-20 09:27 &middot; just now</div><pre class="mono" style="white-space:pre-wrap;word-break:break-word;margin:.6rem 0 0;font-size:.82rem;line-height:1.35">routed via _route(); telegram gated off</pre></div>
+  </div>
+  <!--FEED_END-->
+</section>
+<section id="systems">
   <h2>Systems tracker</h2>
   <p class="note">Every paper system across the project. A rule change spawns a <b>new named</b> system &mdash; winners are never edited in place; underperformers are archived with a regime note, not deleted. Two edges run side by side so we learn <b>when</b> each works.</p>
   <table><tr><th>System</th><th>What it is</th><th>Venue</th><th>Status</th></tr><tr><td><b>SPEAR</b></td><td>Momentum 6-1, top-5, trend gate &mdash; <b>monthly</b></td><td>Equities</td><td><span class="pill p-live">live paper</span></td></tr><tr><td><b>JAVELIN</b></td><td>Same rules, <b>weekly</b> rebalance (cadence A/B vs SPEAR)</td><td>Equities</td><td><span class="pill p-live">live paper</span></td></tr><tr><td><b>DART</b></td><td>Same rules, <b>daily</b> signal + fee-gated exec &mdash; failed the gate, live by override (forward-test)</td><td>Equities</td><td><span class="pill p-gate">live &middot; override</span></td></tr><tr><td><b>saty_paper</b></td><td>Saty ATR / Golden Gate (EMA21) &mdash; A/B control</td><td>Equities</td><td><span class="pill p-live">live paper</span></td></tr><tr><td><b>MAINSAIL</b></td><td>Saty Pivot Ribbon + discipline caps, SPY only</td><td>Equities</td><td><span class="pill p-live">live paper</span></td></tr><tr><td><b>LOOM</b></td><td>Saty Pivot Ribbon A/B vs saty_paper</td><td>Equities</td><td><span class="pill p-live">live paper</span></td></tr><tr><td><b>Dr. Strange fleet</b></td><td>Momentum research battery (nightly)</td><td>Equities</td><td><span class="pill p-paper">research</span></td></tr><tr><td><b>polyagent v2</b></td><td>Probability arbitrage</td><td>Polymarket</td><td><span class="pill p-live">live paper</span></td></tr><tr><td><b>btc_scalper</b></td><td>BTC binary scalper</td><td>Polymarket</td><td><span class="pill p-live">live paper</span></td></tr><tr><td><b>Grokbot</b></td><td>Weather-bias vs market price &mdash; daily high-temp buckets (Grok #1)</td><td>Polymarket</td><td><span class="pill p-live">live paper</span></td></tr></table>
