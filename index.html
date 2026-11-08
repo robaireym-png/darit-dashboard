@@ -202,15 +202,19 @@
   <h2 id="feed">Live system feed</h2>
   <p class="note">Every paper trading system reports here instead of Telegram (changed 2026-09-20 &mdash; the trading chatter was burying the bid alerts). Telegram is now reserved for the Prime bid system. Paper only.</p>
   <div class="grid">
-  <div class="card"><h3>PolyAgent v2 - cycle summary <span class="pill p-live">ok</span></h3><div class="mut mono">2026-11-07 20:51 &middot; just now</div><pre class="mono" style="white-space:pre-wrap;word-break:break-word;margin:.6rem 0 0;font-size:.82rem;line-height:1.35">📉 Cycle 120 Summary (v2 prob-arb only)
+  <div class="card"><h3>PolyAgent v2 - cycle summary <span class="pill p-live">ok</span></h3><div class="mut mono">2026-11-07 21:24 &middot; just now</div><pre class="mono" style="white-space:pre-wrap;word-break:break-word;margin:.6rem 0 0;font-size:.82rem;line-height:1.35">📉 Cycle 126 Summary (v2 prob-arb only)
 Equity: $575.73 (-42.43%) cash+book, not MTM
 Cash (id=1): $561.30
 Open: 1 (arb=1 mm=0)
 Win rate: 32.7% (395 closed)
 Realized P&amp;L: $-595.42</pre></div>
-  <div class="card"><h3>Fleet watchdog - health alert <span class="pill p-gate">warn</span></h3><div class="mut mono">2026-11-07 10:22 &middot; 10 h ago</div><pre class="mono" style="white-space:pre-wrap;word-break:break-word;margin:.6rem 0 0;font-size:.82rem;line-height:1.35">🐕 PolyAgent Watchdog Started
-Poll: 30s | VRAM crit: 90.0% | Temp crit: 85.0°C | Liveness: v2 loop_state &amp;gt;12m, scalper DB &amp;gt;10m (heartbeat.json no longer used — lock-contended)</pre></div>
-  <div class="card"><h3>Wallet Edge - daily watch <span class="pill p-live">ok</span></h3><div class="mut mono">2026-11-07 07:32 &middot; 13 h ago</div><pre class="mono" style="white-space:pre-wrap;word-break:break-word;margin:.6rem 0 0;font-size:.82rem;line-height:1.35">👛 Wallet Watch — paper / analysis-only, no trade authority
+  <div class="card"><h3>Fleet watchdog - health alert <span class="pill p-gate">warn</span></h3><div class="mut mono">2026-11-07 21:21 &middot; 3 min ago</div><pre class="mono" style="white-space:pre-wrap;word-break:break-word;margin:.6rem 0 0;font-size:.82rem;line-height:1.35">⚠️ PolyAgent Watchdog Warning
+⏱ scalper fleet stalled: no forecast logged for 10.1 min (threshold 10m)
+
+GPU: 37% | VRAM: 50.3% (12359/24564 MB) | Temp: 49°C | Power: 95W
+CPU: 27% | RAM: 39.4% (27.0/68.4 GB)
+Time: 2026-11-08T05:21:22 UTC</pre></div>
+  <div class="card"><h3>Wallet Edge - daily watch <span class="pill p-live">ok</span></h3><div class="mut mono">2026-11-07 07:32 &middot; 14 h ago</div><pre class="mono" style="white-space:pre-wrap;word-break:break-word;margin:.6rem 0 0;font-size:.82rem;line-height:1.35">👛 Wallet Watch — paper / analysis-only, no trade authority
 Verdict: NO-GO  (self-split NO-GO, ρ=0.114)
 Universe: 767 wallets w/ history · 14056 resolved mkts
 Elite bar: 0 TRACK / 0 WATCH / 2432 SKIP
@@ -245,7 +249,7 @@ Paper only · shares GG approx · not advice</pre></div>
 144d reconstructed · obs 78d · $50,000
 Top ZETA +116.0% · Lag ARDX -49.6%
 ⚠️ UNVERIFIED holdings recon · not official NAV · risk metrics deferred &amp;lt;60d</pre></div>
-  <div class="card"><h3>Expectancy digest <span class="pill p-live">ok</span></h3><div class="mut mono">2026-11-07 18:44 &middot; 2 h ago</div><pre class="mono" style="white-space:pre-wrap;word-break:break-word;margin:.6rem 0 0;font-size:.82rem;line-height:1.35">📊 Expectancy Digest (net, fee/fill-corrected)
+  <div class="card"><h3>Expectancy digest <span class="pill p-live">ok</span></h3><div class="mut mono">2026-11-07 20:52 &middot; 32 min ago</div><pre class="mono" style="white-space:pre-wrap;word-break:break-word;margin:.6rem 0 0;font-size:.82rem;line-height:1.35">📊 Expectancy Digest (net, fee/fill-corrected)
 CLEAN WEEK (from 2026-07-07T23:06Z, reassess 2026-07-14) — HEADLINE:
   NET E[trade] $-3.619 | n=350 (gate n≥100)
   95% CI [-4.887, -2.383] | cohort NET $-1266.81
@@ -253,7 +257,7 @@ secondary context (NOT the 7/14 decision window):
   post-baseline $-3.507 (n=366) | trailing30 $+0.593 | all-time NET $-1446.77
 Calibration (Brier): model 0.9843 vs market 0.1166 (edge -0.8677)
 Closed (all-time): 395
-Shadow forecasts: 1793359 resolved / 5545030 logged
+Shadow forecasts: 1793359 resolved / 5546340 logged
 Open exposure: $76.55 | v2 cash $561.30
 WR vs breakeven by entry price:
   ✅ 0.00-0.15: WR 24% (breakeven 10%, n=29)
